@@ -1,0 +1,2 @@
+rootProject.name = "OpenSight AI"
+include ':app'
