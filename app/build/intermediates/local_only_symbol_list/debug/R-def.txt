@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+id btn_add_face
+id btn_explore
+id viewFinder
+layout activity_main
