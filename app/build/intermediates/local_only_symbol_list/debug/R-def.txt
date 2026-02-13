@@ -1,6 +1,20 @@
 R_DEF: Internal format may change without notice
 local
+id btn_about
 id btn_add_face
+id btn_capture
 id btn_explore
+id btn_face_mode
+id btn_gallery
+id btn_identify_face
+id btn_import_face
+id btn_manage_faces
+id btn_settings
+id btn_switch_camera
+id btn_walking
+id topBar
+id tv_result
 id viewFinder
 layout activity_main
+string app_name
+style Theme.OpenSight

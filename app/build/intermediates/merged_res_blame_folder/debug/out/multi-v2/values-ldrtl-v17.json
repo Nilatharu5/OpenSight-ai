@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.opensight.ai.app-mergeDebugResources-34:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.opensight.ai.app-mergeDebugResources-33:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "/home/codespace/.gradle/caches/transforms-4/f04cd6244f4b9203b834102570208274/transformed/material-1.11.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
+                    "source": "/home/codespace/.gradle/caches/transforms-4/df1ccd8010fd1f039523a62df34ba9f6/transformed/material-1.9.0/res/values-ldrtl-v17/values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

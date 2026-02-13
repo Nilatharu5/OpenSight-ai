@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.opensight.ai.app-mergeDebugResources-34:/values-v16/values-v16.xml",
+            "outputFile": "com.opensight.ai.app-mergeDebugResources-33:/values-v16/values-v16.xml",
             "map": [
                 {
                     "source": "/home/codespace/.gradle/caches/transforms-4/04b980f1254cb7db2dd2d6314bcaaa48/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/codespace/.gradle/caches/transforms-4/f41efb211daceaa856bafe06654da2ba/transformed/core-1.12.0/res/values-v16/values-v16.xml",
+                    "source": "/home/codespace/.gradle/caches/transforms-4/5255c9d47789240a0ff7307788fe5fe8/transformed/core-1.9.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

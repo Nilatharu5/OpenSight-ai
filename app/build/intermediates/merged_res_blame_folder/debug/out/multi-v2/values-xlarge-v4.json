@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.opensight.ai.app-mergeDebugResources-34:/values-xlarge-v4/values-xlarge-v4.xml",
+            "outputFile": "com.opensight.ai.app-mergeDebugResources-33:/values-xlarge-v4/values-xlarge-v4.xml",
             "map": [
                 {
                     "source": "/home/codespace/.gradle/caches/transforms-4/04b980f1254cb7db2dd2d6314bcaaa48/transformed/appcompat-1.6.1/res/values-xlarge-v4/values-xlarge-v4.xml",

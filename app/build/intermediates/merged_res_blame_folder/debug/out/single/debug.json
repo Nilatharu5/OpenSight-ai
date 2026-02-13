@@ -1,6 +1,10 @@
 [
     {
-        "merged": "com.opensight.ai.app-merged_res-36:/layout_activity_main.xml.flat",
-        "source": "com.opensight.ai.app-main-38:/layout/activity_main.xml"
+        "merged": "com.opensight.ai.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "com.opensight.ai.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.6/com.opensight.ai.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.6/com.opensight.ai.app-main-37:/layout/activity_main.xml"
     }
 ]
