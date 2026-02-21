@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
 
     private val faceDetector = FaceDetection.getClient(
         FaceDetectorOptions.Builder()
-            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST) // Fast mode for Real-time Guidance
+            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
             .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_NONE)
             .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_NONE)
             .build()
@@ -85,11 +85,9 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
     private var isProUnlocked = false
     private val PRO_PIN = "tharU20@14"
     
-    // Super Scanner Logic
     private var currentCandidateFace: Bitmap? = null
     private var originalBrightness = -1f
     
-    // Guided Frame Logic
     private var lastGuidanceCommand = ""
     private var lastGuidanceTime = 0L
 
@@ -174,14 +172,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
             }
         }
 
-        // --- SUPER SCANNER BUTTON (With Flash Delay) ---
         btnIdentify.setOnClickListener {
             if (currentCandidateFace != null) {
                 setHighBrightness(true)
                 toggleTorch(true)
                 speakImmediate("Scanning")
                 
-                // Wait 400ms for Exposure Adjustment
                 Handler(Looper.getMainLooper()).postDelayed({
                     val illuminatedFace = currentCandidateFace 
                     if (illuminatedFace != null) {
@@ -337,7 +333,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
         currentCandidateFace = null
     }
 
-    // Standard announce (queues)
     private fun announce(text: String) {
         val volume = prefs.getFloat("tts_volume", 1.0f)
         val params = Bundle()
@@ -346,12 +341,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
         runOnUiThread { resultTextView.text = text }
     }
 
-    // FAST announce (Flushes queue - No Lag)
     private fun speakImmediate(text: String) {
         val volume = prefs.getFloat("tts_volume", 1.0f)
         val params = Bundle()
         params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, volume)
-        // QUEUE_FLUSH drops previous text instantly
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null)
     }
 
@@ -412,7 +405,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
                     val diffX = faceCenterX - centerX
                     val diffY = faceCenterY - centerY
                     
-                    // GUIDED FRAME LOGIC (Android Style)
                     val thresholdX = 150
                     val thresholdY = 200
                     
@@ -421,21 +413,18 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
                     if (abs(diffX) < thresholdX && abs(diffY) < thresholdY) {
                          command = "Perfect"
                     } else {
-                        // Priority to X axis (Left/Right)
                         if (diffX < -thresholdX) command = "Move Right"
                         else if (diffX > thresholdX) command = "Move Left"
                         
-                        // Secondary priority Y axis (Up/Down) - only if X is okayish
                         else if (diffY < -thresholdY) command = "Move Down"
                         else if (diffY > thresholdY) command = "Move Up"
                     }
 
-                    // Flush Speak logic (Don't repeat too fast unless changed)
                     val currentTime = System.currentTimeMillis()
                     if (command != lastGuidanceCommand || (currentTime - lastGuidanceTime > 2000)) {
                         if (command == "Perfect") {
                             if (lastGuidanceCommand != "Perfect") {
-                                speakImmediate("Face Centered") // Announce once
+                                speakImmediate("Face Centered")
                             }
                         } else {
                             speakImmediate(command)
@@ -444,7 +433,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener, ObjectDet
                         lastGuidanceTime = currentTime
                     }
 
-                    // Prepare Bitmap for Flash Scan
                     val paddingX = (bounds.width() * 0.3).toInt() 
                     val paddingY = (bounds.height() * 0.3).toInt()
                     val cropRect = Rect(

@@ -22,14 +22,12 @@ class FaceRecognitionHelper(val context: Context) {
     private val outputSize = 192 
     private val saveFileName = "faces_database.dat"
 
-    // Singleton Database (Shared Memory)
     companion object {
         var registeredFaces = HashMap<String, FloatArray>()
     }
 
     init {
         setupInterpreter()
-        // Load data only if empty (prevent overwriting live updates)
         if (registeredFaces.isEmpty()) {
             loadRegisteredFaces()
         }
@@ -68,10 +66,8 @@ class FaceRecognitionHelper(val context: Context) {
     fun recognizeImage(bitmap: Bitmap): String {
         val newEmbedding = getFaceEmbedding(bitmap)
         var bestMatchName = "Unknown"
-        // Lower threshold slightly for better flash photography recognition
         var bestScore = 0.65f 
 
-        // Check against the SINGLETON map
         for ((name, savedEmbedding) in registeredFaces) {
             val score = calculateCosineSimilarity(newEmbedding, savedEmbedding)
             if (score > bestScore) {
@@ -82,10 +78,9 @@ class FaceRecognitionHelper(val context: Context) {
         return bestMatchName
     }
 
-    // Real-time Update Logic
     fun registerFace(name: String, bitmap: Bitmap) {
         val embedding = getFaceEmbedding(bitmap)
-        registeredFaces[name] = embedding // Updates Global Memory Immediately
+        registeredFaces[name] = embedding 
         saveRegisteredFaces() 
         Log.d("OpenSight", "Singleton Database Updated: ")
     }

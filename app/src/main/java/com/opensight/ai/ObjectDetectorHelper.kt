@@ -40,7 +40,7 @@ class ObjectDetectorHelper(
 
         when (currentDelegate) {
             DELEGATE_CPU -> {
-                // Default
+                
             }
             DELEGATE_GPU -> {
                 if (CompatibilityList().isDelegateSupportedOnThisDevice) {
@@ -72,12 +72,10 @@ class ObjectDetectorHelper(
 
         var inferenceTime = SystemClock.uptimeMillis()
 
-        // Create preprocessor for the image
         val imageProcessor = ImageProcessor.Builder()
             .add(Rot90Op(-imageRotation / 90))
             .build()
 
-        // Preprocess the image and convert it into a TensorImage for detection.
         val tensorImage = imageProcessor.process(TensorImage.fromBitmap(image))
 
         val results = objectDetector?.detect(tensorImage)
@@ -106,4 +104,3 @@ class ObjectDetectorHelper(
         const val DELEGATE_GPU = 1
         const val MODEL_EFFICIENTDETV0 = 0
     }
-}
